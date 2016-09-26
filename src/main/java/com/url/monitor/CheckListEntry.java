@@ -1,4 +1,4 @@
-package com.ibm.trusteer;
+package com.url.monitor;
 
 import lombok.Data;
 

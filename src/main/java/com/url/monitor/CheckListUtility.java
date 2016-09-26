@@ -1,4 +1,4 @@
-package com.ibm.trusteer;
+package com.url.monitor;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,7 +13,6 @@ import java.security.MessageDigest;
 import java.util.*;
 import java.util.function.Function;
 
-import static com.ibm.trusteer.Configuration.*;
 import static java.text.MessageFormat.format;
 
 class CheckListUtility {
@@ -67,8 +66,8 @@ class CheckListUtility {
     static Function<CheckListEntry, CheckListEntry> updateCheckList(Function<String, Void> notify) {
         return registryEntry -> {
             try {
-                String content = getContentFromURL(registryEntry.getUrl().openConnection(), CONNECT_TIMEOUT, READ_TIMEOUT);
-                String newSignature = getSignature(content, DIGEST);
+                String content = getContentFromURL(registryEntry.getUrl().openConnection(), Configuration.CONNECT_TIMEOUT, Configuration.READ_TIMEOUT);
+                String newSignature = getSignature(content, Configuration.DIGEST);
 
                 if (newSignature.equals(registryEntry.getSignature())) {
                     registryEntry.setLastUpdate(System.currentTimeMillis());

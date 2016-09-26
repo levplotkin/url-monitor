@@ -1,4 +1,4 @@
-package com.ibm.trusteer;
+package com.url.monitor;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -1,4 +1,4 @@
-package com.ibm.trusteer;
+package com.url.monitor;
 
 import com.dumbster.smtp.SimpleSmtpServer;
 import org.apache.commons.logging.Log;
@@ -10,9 +10,8 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-import static com.ibm.trusteer.CheckListUtility.populateCheckList;
-import static com.ibm.trusteer.CheckListUtility.updateCheckList;
-import static com.ibm.trusteer.Configuration.*;
+import static com.url.monitor.CheckListUtility.populateCheckList;
+import static com.url.monitor.CheckListUtility.updateCheckList;
 
 public class Main {
 
@@ -29,7 +28,7 @@ public class Main {
             return;
         }
 
-        SimpleSmtpServer fakeSmtpServer = SimpleSmtpServer.start(SMTP_SERVER_PORT);
+        SimpleSmtpServer fakeSmtpServer = SimpleSmtpServer.start(Configuration.SMTP_SERVER_PORT);
 
         String urls = args[0];
 
@@ -37,7 +36,7 @@ public class Main {
 
         log.info(">>> Start scheduler");
         // run scheduled job
-        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(CORE_POOL_SIZE);
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(Configuration.CORE_POOL_SIZE);
 
         scheduledExecutorService.
                 scheduleAtFixedRate(() ->
@@ -48,12 +47,12 @@ public class Main {
                                                 updateCheckList(
                                                         message -> {
                                                             log.info(message);
-                                                            MailClient.sendMessage(SMTP_SERVER_PORT, FROM, SUBJECT, message, TO);
+                                                            MailClient.sendMessage(Configuration.SMTP_SERVER_PORT, Configuration.FROM, Configuration.SUBJECT, message, Configuration.TO);
                                                             return null;
                                                         }
                                                 )
                                         ).count()
-                        , 0, PERIOD, TIME_UNIT);
+                        , 0, Configuration.PERIOD, Configuration.TIME_UNIT);
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
