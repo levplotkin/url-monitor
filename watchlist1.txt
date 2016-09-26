@@ -1,0 +1,5 @@
+http://some.host1.com/1/test.txt *
+http://some.host2.com/2/test.txt *
+http://some.host3.com:222/3/test.txt 10.1.1.1
+http://some.host3.com/3/test.txt 10.0.0.0
+http://some.host4.com:55/4/test.txt *
