@@ -40,6 +40,7 @@ class Configuration {
     }
 
     static {
+
         try {
             digest = MessageDigest.getInstance(ALGORITHM);
         } catch (NoSuchAlgorithmException e) {

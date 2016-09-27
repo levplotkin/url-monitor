@@ -96,7 +96,7 @@ class CheckListUtility {
 
             inputStream = urlConnection.getInputStream();
 
-            scanner = new Scanner(inputStream, "UTF-8").useDelimiter("\\A");
+            scanner = new Scanner(inputStream).useDelimiter("\\A");
 
             return scanner.hasNext() ? scanner.next() : "";
 
@@ -111,7 +111,7 @@ class CheckListUtility {
     }
 
     private static String getSignature(String content, MessageDigest digest) throws UnsupportedEncodingException {
-        digest.update(content.getBytes("utf8"));
+        digest.update(content.getBytes());
         return javax.xml.bind.DatatypeConverter.printHexBinary(digest.digest());
     }
 }

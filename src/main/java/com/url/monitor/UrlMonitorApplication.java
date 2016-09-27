@@ -13,7 +13,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import static com.url.monitor.CheckListUtility.populateCheckList;
 import static com.url.monitor.CheckListUtility.updateCheckList;
 
-public class Main {
+public class UrlMonitorApplication {
 
 
 
